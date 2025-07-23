@@ -1,5 +1,5 @@
 # docker-wechat-vnc
-在docker里运行wechat，可以通过web或者VNC访问wechat
+在docker里运行wechat，可以通过web或者VNC访问wechat  
 使用 [consol/debian-xfce-vnc:latest](https://hub.docker.com/r/consol/debian-xfce-vnc) 和 微信官方linux x86版本https://linux.weixin.qq.com/ 构建而来，更多详情配置参考官方
 
 调试不易，希望点点小心心，谢谢
