@@ -4,7 +4,8 @@
 
 调试不易，希望点点小心心，谢谢
 
-# docker-compose.yml
+# 启动
+## docker-compose.yml
 ```yml
 services:
   wechat:
@@ -30,3 +31,6 @@ services:
     shm_size: '4068m'
 ```
 docker-compose up -d 启动即可
+
+# 构建
+linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
