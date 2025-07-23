@@ -4,7 +4,12 @@
 
 调试不易，希望点点小心心，谢谢
 
+
+# 构建
+linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
+
 # 启动
+本构建资源待上传中，请稍等
 ## docker-compose.yml
 ```yml
 services:
@@ -31,6 +36,3 @@ services:
     shm_size: '4068m'
 ```
 docker-compose up -d 启动即可
-
-# 构建
-linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
