@@ -9,8 +9,8 @@
 services:
   wechat:
     # 这里使用您刚刚构建的镜像！
-    image: my-wechat:latest
-    container_name: my-wechat
+    image: dsq-docker-wechat:latest
+    container_name: dsq-docker-wechat
     ports:
       - "6901:6901"  # Web访问端口
       - "5901:5901"  # VNC客户端访问端口
