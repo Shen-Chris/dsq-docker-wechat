@@ -30,15 +30,16 @@ RUN echo '#!/bin/sh\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexpo
     echo '#!/bin/sh\nif [ -z "$XDG_RUNTIME_DIR" ]; then\n    export XDG_RUNTIME_DIR=/run/user/$(id -u)\nfi' > /etc/profile.d/xdg-runtime-dir.sh && \
     chmod +x /etc/profile.d/*.sh
 
-# 步骤7: 复制并安装微信
+# 步骤7: 复制并安装微信 or 从构建参数指定的 URL 下载并安装微信
 #本地镜像安装
 #COPY weixin.deb /tmp/weixin.deb
 #RUN apt-get update && apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
 #下载安装
 ARG WECHAT_URL
-# 使用 ADD 指令直接从 URL 下载文件到镜像的 /tmp/ 目录下，并命名为 weixin.deb
-ADD ${WECHAT_URL} /tmp/weixin.deb
-RUN apt-get update && apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
+RUN apt-get update && apt-get install -y wget && \
+    wget -O /tmp/weixin.deb "${WECHAT_URL}" && \
+    apt-get install -y /tmp/weixin.deb && \
+    rm /tmp/weixin.deb
 
 # 步骤8: 为 headless 用户创建程序自动启动和输入法配置文件
 RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
