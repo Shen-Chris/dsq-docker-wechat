@@ -13,8 +13,14 @@
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
 
 # 启动
-本构建资源待上传中，请稍等
-## docker-compose.yml
+
+## 1、拉取
+```
+docker pull ghcr.io/shen-chris/dsq-docker-wechat:sha256-126117b8507b739e05be8d16171d23e02c086fc1da49a1d6235f9125ac33b53d.sig
+```
+
+## 2、docker-compose.yml
+路径、密码请自定义
 ```yml
 services:
   wechat:
@@ -40,6 +46,7 @@ services:
     # 调整共享内存大小，新版微信可能需要
     shm_size: '4068m'
 ```
+## 3、启动
 docker-compose up -d 启动即可
 
 # 效果
