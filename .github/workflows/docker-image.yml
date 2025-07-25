@@ -6,13 +6,27 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# jobs:
+
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: Build the Docker image
+#       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+# 工作流执行的任务
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set execute permission for script
+        run: chmod +x buildImagesLocal.sh
+
+      - name: Run local build script
+        run: ./buildImagesLocal.sh
