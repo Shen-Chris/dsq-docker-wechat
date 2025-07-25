@@ -7,13 +7,13 @@ IMAGE_TAG="latest"
 # 微信安装包的下载地址
 WECHAT_DOWNLOAD_URL="https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb"
 
-# 1. 下载微信安装包到本地，命名为 weixin.deb
-echo "================================================="
-echo "Downloading WeChat package from ${WECHAT_DOWNLOAD_URL}"
-echo "================================================="
-wget "${WECHAT_DOWNLOAD_URL}" -O weixin.deb
+# 可选1本地安装： 下载微信安装包到本地，命名为 weixin.deb
+#echo "================================================="
+#echo "Downloading WeChat package from ${WECHAT_DOWNLOAD_URL}"
+#echo "================================================="
+# wget "${WECHAT_DOWNLOAD_URL}" -O weixin.deb
 
-# 2
+# 可选2：下载安装
 echo "================================================="
 echo "Starting Docker build for ${IMAGE_NAME}:${IMAGE_TAG}"
 echo "================================================="
