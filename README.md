@@ -1,8 +1,12 @@
 # dsq-docker-wechat
 在docker里运行wechat，可以通过web或者VNC访问wechat  
-使用 [consol/debian-xfce-vnc:latest](https://hub.docker.com/r/consol/debian-xfce-vnc) 和 微信官方linux x86版本https://linux.weixin.qq.com/ 构建而来，更多详情配置参考官方
+使用 [consol/debian-xfce-vnc:latest](https://hub.docker.com/r/consol/debian-xfce-vnc) 和 微信官方linux x86版本https://linux.weixin.qq.com/ 构建而来，自带fcitx5中文输入法，更多详情配置参考官方
 
-调试不易，希望点点小心心，谢谢
+- debian-xfce-vnc
+- 微信官方linux x86版本 （其他版本暂未构建，有需要可以自己尝试打包）
+- fcitx5中文输入法
+
+调试不易，希望点点小🌟🌟，谢谢
 
 
 # 构建
@@ -20,6 +24,7 @@ services:
     ports:
       - "6901:6901"  # Web访问端口
       - "5901:5901"  # VNC客户端访问端口
+    user: "1000:1000" # 以 UID 1000 和 GID 1000 的身份运行 即 headless用户
     volumes:
       # 挂载数据卷，实现数据持久化，路径请自定义
       - "/path/data:/home/headless/.config/weixin"
@@ -50,6 +55,8 @@ vnc预览效果
 浏览器预览效果
 <img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/1b90f90d-5573-40a3-9b54-1a8710699337" />
 
+中文输入法效果预览
+<img width="1920" height="1022" alt="image" src="https://github.com/user-attachments/assets/f012ff8f-f011-434e-a662-abb4e80448bf" />
 
 
 
