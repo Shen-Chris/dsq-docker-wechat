@@ -31,7 +31,13 @@ RUN echo '#!/bin/sh\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexpo
     chmod +x /etc/profile.d/*.sh
 
 # 步骤7: 复制并安装微信
-COPY weixin.deb /tmp/weixin.deb
+#本地镜像安装
+#COPY weixin.deb /tmp/weixin.deb
+#RUN apt-get update && apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
+#下载安装
+ARG WECHAT_URL
+# 使用 ADD 指令直接从 URL 下载文件到镜像的 /tmp/ 目录下，并命名为 weixin.deb
+ADD ${WECHAT_URL} /tmp/weixin.deb
 RUN apt-get update && apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
 
 # 步骤8: 为 headless 用户创建程序自动启动和输入法配置文件
