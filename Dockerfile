@@ -36,10 +36,9 @@ RUN echo '#!/bin/sh\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexpo
 #RUN apt-get update && apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
 #下载安装
 ARG WECHAT_URL
-RUN apt-get update && apt-get install -y wget && \
-    wget -O /tmp/weixin.deb "${WECHAT_URL}" && \
-    apt-get install -y /tmp/weixin.deb && \
-    rm /tmp/weixin.deb
+RUN apt-get update && apt-get install -y --no-install-recommends wget
+RUN wget -O /tmp/weixin.deb "${WECHAT_URL}"
+RUN apt-get install -y /tmp/weixin.deb && rm /tmp/weixin.deb
 
 # 步骤8: 为 headless 用户创建程序自动启动和输入法配置文件
 RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
