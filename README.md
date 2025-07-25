@@ -25,7 +25,7 @@ docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 services:
   wechat:
     # 这里使用您刚刚构建的镜像！
-    image: dsq-docker-wechat:latest
+    image: ghcr.io/shen-chris/dsq-docker-wechat:main
     container_name: dsq-docker-wechat
     ports:
       - "6901:6901"  # Web访问端口
