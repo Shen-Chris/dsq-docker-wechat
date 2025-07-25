@@ -16,7 +16,7 @@ linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x b
 
 ## 1、拉取
 ```
-docker pull ghcr.io/shen-chris/dsq-docker-wechat:sha256-126117b8507b739e05be8d16171d23e02c086fc1da49a1d6235f9125ac33b53d.sig
+docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 ```
 
 ## 2、docker-compose.yml
