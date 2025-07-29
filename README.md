@@ -9,7 +9,7 @@
 调试不易，希望点点小🌟🌟，谢谢
 
 
-# 构建
+# 自构建镜像
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
 
 # 启动
@@ -24,7 +24,7 @@ docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 ```yml
 services:
   wechat:
-    # 这里使用您刚刚构建的镜像！
+    # 镜像
     image: ghcr.io/shen-chris/dsq-docker-wechat:main
     container_name: dsq-docker-wechat
     ports:
@@ -36,13 +36,13 @@ services:
       - "/path/data:/home/headless/.config/weixin"
       - "/path/files:/home/headless/WeChat_files"
     environment:
-      # --- 在这里添加或修改分辨率 ---
+      # --- 分辨率 ---
       - "VNC_RESOLUTION=1366x768"
       - "LANG=zh_CN.UTF-8"
       - "LANGUAGE=zh_CN:zh"
       - "LC_ALL=zh_CN.UTF-8"
       - "TZ=Asia/Shanghai"
-      - "VNC_PW=dsqpwd" # 设置您自己的VNC连接密码
+      - "VNC_PW=dsqpwd" # VNC连接密码
     # 调整共享内存大小，新版微信可能需要
     shm_size: '4068m'
 ```
