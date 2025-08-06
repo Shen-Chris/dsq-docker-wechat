@@ -58,7 +58,7 @@ docker-compose up -d 启动即可
 2. VPN
 3. stunnel
 ### novnc
-反向代理https，建议不要暴露http，示例
+反向代理https，http有风险，示例
 ```
 
 server {
