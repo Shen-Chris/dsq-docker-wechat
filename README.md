@@ -52,7 +52,7 @@ docker-compose up -d 启动即可
 ## 4、安全性配置
 ### vnc
 建议不要把内网5901端口直接暴露到外网，会有风险，可以考虑以下几种方式转发
-1. ssh隧道，单端口 ``` ssh -L 5901:localhost:5901 用户@ip或域名 [-p ssh端口] ``` eg. ```ssh -L 5901:localhost:5901 root@www.ssq.cn -p 22``` 连接后不要断开，打开vnc客户端连接localhost:5901
+1. ssh隧道，单端口 ``` ssh -L 5901:localhost:5901 用户@ip或域名 [-p ssh端口] ``` eg. ```ssh -o ServerAliveInterval=60 -L 5901:localhost:5901 root@www.ssq.cn -p 22``` 连接后不要断开，ServerAliveInterval=60，60秒“心跳包”按需增删，打开vnc客户端连接localhost:5901
 > 问题：~$ channel 3: open failed: administratively prohibited: open failed 是SSH配置策略明确禁止了这个转发行为，sudo vim /etc/ssh/sshd_config，```Match User root
     AllowTcpForwarding yes```
 2. VPN
