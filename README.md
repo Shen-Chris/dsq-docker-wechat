@@ -8,7 +8,6 @@
 
 调试不易，希望点点小🌟🌟，谢谢
 
-
 # 自构建镜像
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
 
@@ -60,7 +59,6 @@ docker-compose up -d 启动即可
 ### novnc
 反向代理https，http有风险，示例
 ```
-
 server {
     listen 6901 ssl http2 ;
     listen [::]:6901 ssl http2 ;
@@ -76,9 +74,7 @@ server {
     #ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
     # 证书配置省略。。。
 
-    location ^~ / {
-      
-      
+    location ^~ / {     
       proxy_pass http://192.168.1.23:6901; # !!!! 修改成自己docker 服务内网能访问的ip !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       proxy_set_header Host $http_host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -90,16 +86,11 @@ server {
       proxy_set_header REMOTE-HOST $remote_addr;
       
       proxy_connect_timeout 60s;
-    proxy_send_timeout 600s;
-    proxy_read_timeout 600s;
+      proxy_send_timeout 600s;
+      proxy_read_timeout 600s;
       proxy_http_version 1.1;  # 支持websocket !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       proxy_set_header Upgrade $http_upgrade;
       proxy_set_header Connection $connection_upgrade;
-      
-      
-      
-      
-      
     }
     
     #PROXY-CONF-END
@@ -122,15 +113,40 @@ server {
     }
 
     #LOG START
-    
 access_log  /www/wwwlogs/www.ssq.cn.log;
     error_log  /www/wwwlogs/www.ssq.cn.error.log;
-    
     #LOG END
 }
 ```
 
-# 效果
+# 其他问题
+1. fcitx5默认用中文输入法，打开运行程序，下拉，点击fcitx5配置，打开profile文件修改成：
+```
+[Groups/0]
+# Group Name
+Name=中文输入
+# Layout
+Default Layout=cn
+# Default Input Method
+DefaultIM=pinyin
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=pinyin
+# Layout=
+Layout=
+
+[GroupOrder]
+0=中文输入
+```
+
+# 预览效果
 vnc预览效果
 <img width="1920" height="1015" alt="image" src="https://github.com/user-attachments/assets/56b7a8a8-5b2c-46dd-82db-bef70cfdd7aa" />
 
