@@ -15,6 +15,10 @@ linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x b
 
 ## 1、拉取
 ```
+测试版本:
+docker pull ghcr.io/shen-chris/dsq-docker-wechat:v1.1
+
+稳定版本
 docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 ```
 
