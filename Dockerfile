@@ -1,3 +1,11 @@
+# ----------------------------------
+LABEL org.opencontainers.image.description="dsq-docker-wechat v1.1 版本更新\n\
+- 主要新增: sudo \n\
+- 发布于: 2025.8.14\n\
+\n\
+测试版本，有问题请提交(issue)[https://github.com/Shen-Chris/dsq-docker-wechat]"
+# ----------------------------------
+
 ARG WECHAT_URL="https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb"
 
 # 基础镜像
