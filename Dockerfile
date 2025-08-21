@@ -51,6 +51,8 @@ RUN \
 
 # 创建普通用户
 RUN useradd -ms /bin/bash -u 1000 headless || true
+# 配置sudo，授予headless用户免密权限
+RUN echo 'headless ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/headless-nopasswd
 
 RUN echo "Downloading from: ${WECHAT_URL}" && \
     wget -O /tmp/weixin.deb "${WECHAT_URL}"

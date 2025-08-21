@@ -1,4 +1,4 @@
-# dsq-docker-wechat
+# dsq-docker-wechat 测试版本v1.1
 在docker里运行wechat，可以通过web或者VNC访问wechat  
 使用 [consol/debian-xfce-vnc:latest](https://hub.docker.com/r/consol/debian-xfce-vnc) 和 微信官方linux x86版本https://linux.weixin.qq.com/ 构建而来，自带fcitx5中文输入法，更多详情配置参考官方
 
@@ -28,7 +28,7 @@ docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 services:
   wechat:
     # 镜像
-    image: ghcr.io/shen-chris/dsq-docker-wechat:main
+    image: ghcr.io/shen-chris/dsq-docker-wechat:v1.1
     container_name: dsq-docker-wechat
     hostname: wechat
     ports:
