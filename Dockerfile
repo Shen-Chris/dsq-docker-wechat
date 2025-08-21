@@ -11,13 +11,30 @@ ARG WECHAT_URL
 # 更换为国内镜像源以加速
 RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
 
-# 安装所有依赖，包括 wget
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    mousepad \
-    fonts-wqy-zenhei fonts-noto-cjk locales \
-    libatomic1 libxkbcommon-x11-0 libxcb-xkb1 libxcb-icccm4 \
-    libxcb-image0 libxcb-render-util0 libxcb-keysyms1 \
-    fcitx5 fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-qt5 \
+# 安装所有依赖
+RUN \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    # --- 核心工具 ---
+    sudo \
+    # --- 基础字体与环境 ---
+    fonts-wqy-zenhei \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
+    locales \
+    # --- 微信运行时库 (ldd分析得出) ---
+    libatomic1 \
+    libxkbcommon-x11-0 \
+    libxcb-xkb1 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-render-util0 \
+    libxcb-keysyms1 \
+    # --- 中文输入法框架和引擎 (Fcitx5) ---
+    fcitx5 \
+    fcitx5-chinese-addons \
+    fcitx5-frontend-gtk3 \
+    fcitx5-frontend-qt5 \
     wget \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
