@@ -30,6 +30,7 @@ services:
     # 镜像
     image: ghcr.io/shen-chris/dsq-docker-wechat:main
     container_name: dsq-docker-wechat
+    hostname: wechat
     ports:
       - "6901:6901"  # Web访问端口
       - "5901:5901"  # VNC客户端访问端口

@@ -1,3 +1,9 @@
+
+ARG WECHAT_URL="https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb"
+
+# 基础镜像
+FROM consol/debian-xfce-vnc:latest
+
 # ----------------------------------
 LABEL org.opencontainers.image.description="dsq-docker-wechat v1.1 版本更新\n\
 - 主要新增: sudo \n\
@@ -5,11 +11,6 @@ LABEL org.opencontainers.image.description="dsq-docker-wechat v1.1 版本更新\
 \n\
 测试版本，有问题请提交(issue)[https://github.com/Shen-Chris/dsq-docker-wechat]"
 # ----------------------------------
-
-ARG WECHAT_URL="https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb"
-
-# 基础镜像
-FROM consol/debian-xfce-vnc:latest
 
 # 切换到 root 用户进行系统级安装
 USER root
