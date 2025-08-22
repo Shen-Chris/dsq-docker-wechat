@@ -8,6 +8,12 @@
 
 调试不易，希望点点小🌟🌟，谢谢
 
+## 新功能 / 修复
+- emoji ✅
+- headless用户sudo权限 ✅
+- 官方微信包语音视频通话卡住异常 ing
+- 待补充
+
 # 自构建镜像
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
 
