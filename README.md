@@ -129,26 +129,26 @@ access_log  /www/wwwlogs/www.ssq.cn.log;
 ```
 [Groups/0]
 # Group Name
-Name=中文输入
+Name=默认
 # Layout
 Default Layout=cn
 # Default Input Method
-DefaultIM=pinyin
+DefaultIM=keyboard-cn
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us
+Name=pinyin
 # Layout
 Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=pinyin
-# Layout=
+Name=keyboard-us
+# Layout
 Layout=
 
 [GroupOrder]
-0=中文输入
+0=默认
 ```
 
 # 预览效果
