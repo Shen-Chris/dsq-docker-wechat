@@ -8,6 +8,8 @@
 
 调试不易，希望点点小🌟🌟，谢谢
 
+# beta版本
+- [v1.1](https://github.com/Shen-Chris/dsq-docker-wechat/tree/v1.1)
 # 自构建镜像
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
 
