@@ -131,7 +131,9 @@ access_log  /www/wwwlogs/www.ssq.cn.log;
 ```
 
 # 其他问题
-1. fcitx5默认用中文输入法，打开运行程序，下拉，点击fcitx5配置，打开profile文件修改成：
+1.fcitx5输入法
+先终止```killall -9 fcitx5```，在左上角运行里找到fcitx5配置，打开profile（没有则新增），把配置填进去，再在左上角运行程序里启动fcitx5，打开浏览器 crtl+space
+profile配置：
 ```
 [Groups/0]
 # Group Name
@@ -155,6 +157,16 @@ Layout=
 
 [GroupOrder]
 0=默认
+```
+若还有问题，可执行脚本重置：
+```sh
+killall -9 fcitx5
+rm -rf ~/.config/fcitx5
+fcitx5 &
+# 将拼音输入法添加到启用列表中
+fcitx5-remote -a pinyin
+# 重启Fcitx5以应用所有更改
+killall fcitx5 && fcitx5 &
 ```
 
 # 预览效果
