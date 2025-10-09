@@ -13,6 +13,7 @@
 - headless用户sudo权限 ✅
 - 官方微信包语音视频通话卡住异常 (疑似和声音设备有关) ing
 - vnc复制粘贴中文不兼容  ing
+- 微信映射文件持久化存储  ing
 - 待补充
 
 # 自构建镜像
@@ -49,9 +50,6 @@ services:
       - "/path/xwechat:/headless/.xwechat"
       - "/path/xwechat_files:/headless/文档/xwechat_files"
       - "/path/downloads:/headless/下载"
-      # --- 新增：映射PulseAudio的socket和cookie ---
-      - "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native"
-      - "~/.config/pulse/cookie:/headless/.config/pulse/cookie"
     environment:
       # --- 分辨率 ---
       - "VNC_RESOLUTION=1366x768"
@@ -60,8 +58,6 @@ services:
       - "LC_ALL=zh_CN.UTF-8"
       - "TZ=Asia/Shanghai"
       - "VNC_PW=dsqpwd" # VNC连接密码
-      # --- 音频服务 ---
-      - "PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native"
     # 调整共享内存大小，新版微信可能需要
     shm_size: '4068m'
 ```

@@ -81,7 +81,7 @@ RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
 RUN chown -R headless:headless /home/headless
 
 # 将headless用户加入音频相关的组 ---
-RUN usermod -a -G pulse-access headless
+RUN usermod -a -G audio,pulse-access headless
 
 # 创建 supervisord 任务以解决权限问题
 RUN echo '#!/bin/sh\nset -e\necho "[Init] Creating XDG_RUNTIME_DIR for user 1000..."\nmkdir -p /run/user/1000\nchown 1000:1000 /run/user/1000\nchmod 0700 /run/user/1000\necho "[Init] Directory created successfully."' > /usr/local/bin/create-runtime-dir.sh && \
