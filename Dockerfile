@@ -44,6 +44,8 @@ RUN \
     fcitx5-chinese-addons \
     fcitx5-frontend-gtk3 \
     fcitx5-frontend-qt5 \
+    # --- 剪贴板兼容性工具 ---
+    autocutsel \
     wget \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
@@ -65,11 +67,13 @@ RUN echo '#!/bin/sh\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexpo
     echo '#!/bin/sh\nif [ -z "$XDG_RUNTIME_DIR" ]; then\n    export XDG_RUNTIME_DIR=/run/user/$(id -u)\nfi' > /etc/profile.d/xdg-runtime-dir.sh && \
     chmod +x /etc/profile.d/*.sh
 
-# 为 headless 用户创建程序自动启动和输入法配置文件
+# 为 headless 用户创建程序自动启动和输入法配置文件 + 剪切板同步
 RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
     echo '[Desktop Entry]\nName=WeChat\nExec=/usr/bin/wechat --no-sandbox\nType=Application\nTerminal=false' > /home/headless/.config/autostart/wechat.desktop && \
     echo '[Desktop Entry]\nName=Fcitx5\nExec=dbus-launch fcitx5\nType=Application' > /home/headless/.config/autostart/fcitx5.desktop && \
-    echo '[Profile]\nDefaultIM=classic\nIMList=keyboard-us,pinyin' > /home/headless/.config/fcitx5/profile
+    echo '[Profile]\nDefaultIM=classic\nIMList=keyboard-us,pinyin' > /home/headless/.config/fcitx5/profile && \
+    # 启动剪贴板同步器
+    echo '[Desktop Entry]\nName=Autocutsel\nExec=autocutsel -fork\nType=Application' > /home/headless/.config/autostart/autocutsel.desktop
 
 # 确保 headless 用户拥有其主目录的所有权
 RUN chown -R headless:headless /home/headless
