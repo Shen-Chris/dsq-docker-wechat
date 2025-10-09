@@ -46,6 +46,8 @@ RUN \
     fcitx5-frontend-qt5 \
     # --- 剪贴板兼容性工具 ---
     autocutsel \
+    # --- PulseAudio 音频客户端库 ---
+    pulseaudio \
     wget \
     && sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
@@ -78,8 +80,17 @@ RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
 # 确保 headless 用户拥有其主目录的所有权
 RUN chown -R headless:headless /home/headless
 
+# 将headless用户加入音频相关的组 ---
+RUN usermod -a -G pulse-access headless
+
 # 创建 supervisord 任务以解决权限问题
 RUN echo '#!/bin/sh\nset -e\necho "[Init] Creating XDG_RUNTIME_DIR for user 1000..."\nmkdir -p /run/user/1000\nchown 1000:1000 /run/user/1000\nchmod 0700 /run/user/1000\necho "[Init] Directory created successfully."' > /usr/local/bin/create-runtime-dir.sh && \
     chmod 755 /usr/local/bin/create-runtime-dir.sh
 
 RUN echo '[program:create-runtime-dir]\ncommand=/usr/local/bin/create-runtime-dir.sh\nuser=root\nautostart=true\nautorestart=false\nstartsecs=0\npriority=1\nstdout_logfile=/dev/stdout\nstdout_logfile_maxbytes=0\nstderr_logfile=/dev/stderr\nstderr_logfile_maxbytes=0' > /etc/supervisor/conf.d/create-runtime-dir.conf
+
+# ---集成权限修复脚本 ---
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
