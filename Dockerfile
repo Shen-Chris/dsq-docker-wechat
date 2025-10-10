@@ -71,13 +71,21 @@ RUN echo '#!/bin/sh\nexport GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexpo
     echo '#!/bin/sh\nif [ -z "$XDG_RUNTIME_DIR" ]; then\n    export XDG_RUNTIME_DIR=/run/user/$(id -u)\nfi' > /etc/profile.d/xdg-runtime-dir.sh && \
     chmod +x /etc/profile.d/*.sh
 
+# 复制音频自启动脚本
+COPY pulse-autostart.sh /usr/local/bin/pulse-autostart.sh
+RUN chmod +x /usr/local/bin/pulse-autostart.sh
+
 # 为 headless 用户创建程序自动启动和输入法配置文件 + 剪切板同步
 RUN mkdir -p /home/headless/.config/autostart /home/headless/.config/fcitx5 && \
     echo '[Desktop Entry]\nName=WeChat\nExec=/usr/bin/wechat --no-sandbox\nType=Application\nTerminal=false' > /home/headless/.config/autostart/wechat.desktop && \
     echo '[Desktop Entry]\nName=Fcitx5\nExec=dbus-launch fcitx5\nType=Application' > /home/headless/.config/autostart/fcitx5.desktop && \
     echo '[Profile]\nDefaultIM=classic\nIMList=keyboard-us,pinyin' > /home/headless/.config/fcitx5/profile && \
     # 启动剪贴板同步器
-    echo '[Desktop Entry]\nName=Autocutsel\nExec=autocutsel -fork\nType=Application' > /home/headless/.config/autostart/autocutsel.desktop
+    echo '[Desktop Entry]\nName=Autocutsel\nExec=autocutsel -fork\nType=Application' > /home/headless/.config/autostart/autocutsel.desktop && \
+    # 启动PulseAudio并配置虚拟声卡
+    echo '[Desktop Entry]\nName=PulseAudio\nExec=/usr/local/bin/pulse-autostart.sh\nType=Application' > /home/headless/.config/autostart/pulseaudio.desktop && \
+    # 授权给普通用户
+    chown -R 1000:1000 /home/headless/.config
 
 # 确保 headless 用户拥有其主目录的所有权
 RUN chown -R headless:headless /home/headless
