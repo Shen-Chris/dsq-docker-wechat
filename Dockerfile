@@ -77,3 +77,5 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # 设置入口点
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+CMD ["/usr/bin/vnc.sh"]
