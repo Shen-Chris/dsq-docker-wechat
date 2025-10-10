@@ -1,7 +1,6 @@
 #!/bin/sh
-# 权限修复和交接
 
-# root用户
+# --- root修复权限 ---
 if [ "$(id -u)" = '0' ]; then
     echo "Running as root, attempting to fix permissions..."
     chown -R 1000:1000 /home/headless || true
@@ -10,10 +9,10 @@ if [ "$(id -u)" = '0' ]; then
     chown -R 1000:1000 /headless/下载 || true
     echo "Permission fix attempt finished. Switching to user headless..."
 
-    # 切换到 headless
+    # 切换到 headless 用户
     exec gosu headless "$0" "$@"
 fi
 
-echo "Running as headless, handing over to the main container command..."
+echo "Running as headless, handing over to the base image's main command..."
 
-exec "$@"
+exec /bin/bash /dockerstartup/vnc_startup.sh --wait
