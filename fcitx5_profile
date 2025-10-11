@@ -1,0 +1,28 @@
+[Groups/0]
+# Group Name
+Name=默认
+# Layout
+Default Layout=cn
+# Default Input Method
+DefaultIM=keyboard-cn
+
+[Groups/0/Items/0]
+# Name
+Name=pinyin
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=keyboard-cn
+# Layout
+Layout=
+
+[Groups/0/Items/2]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[GroupOrder]
+0=默认
