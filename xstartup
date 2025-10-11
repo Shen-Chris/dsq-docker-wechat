@@ -7,7 +7,16 @@ export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 
-# 剪贴板管理器
+£ 剪贴板管理器
 vncconfig -nowin &
+
+# 虚拟声卡
+/usr/local/bin/pulse-autostart.sh &
+
+# Fcitx5输入法
+fcitx5 &
+
+# 启动微信
+/usr/bin/wechat --no-sandbox &
 
 exec /etc/X11/xinit/xinitrc

@@ -33,7 +33,7 @@ RUN \
         libxcb-image0 libxcb-render-util0 libxcb-keysyms1 \
         # --- 中文输入法框架和引擎 (Fcitx5) -
         im-config \
-        fcitx5 fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-qt5 \
+        fcitx5 fcitx5-chinese-addons fcitx5-material-color fcitx5-frontend-gtk3 fcitx5-frontend-qt5 \
         # ---音频 ---
         pulseaudio pulseaudio-utils \
     && \
@@ -56,12 +56,7 @@ RUN echo "Downloading from: ${WECHAT_URL}" && \
     rm /tmp/weixin.deb
 
 # im-config 官方方式配置输入法
-RUN im-config -n fcitx5
-
-# --- 步骤7: (可选，但推荐) 预置一个干净的profile文件 ---
-# 既然您发现修改profile有效，我们就直接预置一个正确的
-RUN mkdir -p /home/headless/.config/fcitx5 && \
-    echo -e "[Profile]\nIMList=keyboard-us:True,pinyin:True" > /home/headless/.config/fcitx5/profile
+# RUN im-config -n fcitx5
 
 # 步骤8: 配置VNC核心启动脚本
 RUN mkdir -p /home/headless/.vnc
