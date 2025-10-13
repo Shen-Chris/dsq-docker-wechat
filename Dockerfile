@@ -6,7 +6,7 @@ FROM consol/debian-xfce-vnc:latest
 # ----------------------------------
 LABEL org.opencontainers.image.description="dsq-docker-wechat v1.1 版本更新\n\
 - 主要新增: sudo \n\
-- 发布于: 2025.8.14\n\
+- 版本时间: 2025.8.14 - 2025.10.13 \n\
 \n\
 测试版本，有问题请提交(issue)[https://github.com/Shen-Chris/dsq-docker-wechat]"
 # ----------------------------------
