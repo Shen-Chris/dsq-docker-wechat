@@ -63,6 +63,12 @@ export GTK_IM_MODULE="fcitx"\n\
 export QT_IM_MODULE="fcitx"\n\
 export XMODIFIERS="@im=fcitx"' > /etc/X11/Xsession.d/99-custom-im-env && \
     chmod +x /etc/X11/Xsession.d/99-custom-im-env
+RUN echo '\n\
+export LANG="zh_CN.UTF-8"\n\
+export LC_ALL="zh_CN.UTF-8"\n\
+export GTK_IM_MODULE="fcitx"\n\
+export QT_IM_MODULE="fcitx"\n\
+export XMODIFIERS="@im=fcitx"' >> /headless/.bashrc
 
 # im-config 官方方式配置输入法
 # RUN im-config -n fcitx5

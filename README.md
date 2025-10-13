@@ -150,43 +150,18 @@ sudo chmod 755 /wechat_data /wechat_files
 ```
 
 ## 2.fcitx5输入法 [**已默认配置中文输入法，ctrl space切换输入法**]
-
-先终止```killall -9 fcitx5```，在左上角运行里找到fcitx5配置，打开profile（没有则新增），把配置填进去，再在左上角运行程序里启动fcitx5，打开浏览器 crtl+space
-profile配置：
+若输入法存在问题（例如部分程序无法使用），则需要修改环境变量后重新启动容器:
+修改环境变量```vim ~/.bashrc```，在末尾添加
+```bashrc
+export LANG="zh_CN.UTF-8"
+export LC_ALL="zh_CN.UTF-8"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
 ```
-[Groups/0]
-# Group Name
-Name=默认
-# Layout
-Default Layout=cn
-# Default Input Method
-DefaultIM=keyboard-cn
+再生效```source ~/.bashrc``` 后
+如若未生效则需要重新启动容器后，再启动fcitx5尝试
 
-[Groups/0/Items/0]
-# Name
-Name=pinyin
-# Layout
-Layout=
-
-[Groups/0/Items/1]
-# Name
-Name=keyboard-us
-# Layout
-Layout=
-
-[GroupOrder]
-0=默认
-```
-若还有问题，可执行脚本重置：
-```sh
-killall -9 fcitx5
-rm -rf ~/.config/fcitx5
-fcitx5 &
-# 将拼音输入法添加到启用列表中
-fcitx5-remote -a pinyin
-# 重启Fcitx5以应用所有更改
-killall fcitx5 && fcitx5 &
-```
 
 # 预览效果
 vnc预览效果
