@@ -55,10 +55,25 @@ RUN echo "Downloading from: ${WECHAT_URL}" && \
     apt-get install -y /tmp/weixin.deb && \
     rm /tmp/weixin.deb
 
+# 环境变量
+RUN echo '#!/bin/sh\n\
+export LANG="zh_CN.UTF-8"\n\
+export LC_ALL="zh_CN.UTF-8"\n\
+export GTK_IM_MODULE="fcitx"\n\
+export QT_IM_MODULE="fcitx"\n\
+export XMODIFIERS="@im=fcitx"' > /etc/X11/Xsession.d/99-custom-im-env && \
+    chmod +x /etc/X11/Xsession.d/99-custom-im-env
+RUN echo '\n\
+export LANG="zh_CN.UTF-8"\n\
+export LC_ALL="zh_CN.UTF-8"\n\
+export GTK_IM_MODULE="fcitx"\n\
+export QT_IM_MODULE="fcitx"\n\
+export XMODIFIERS="@im=fcitx"' >> /headless/.bashrc
+
 # im-config 官方方式配置输入法
 # RUN im-config -n fcitx5
 
-# 步骤8: 配置VNC核心启动脚本
+# 配置VNC核心启动脚本
 RUN mkdir -p /home/headless/.vnc
 COPY xstartup /home/headless/.vnc/xstartup
 RUN chmod +x /home/headless/.vnc/xstartup
