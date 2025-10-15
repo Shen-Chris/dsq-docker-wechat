@@ -13,7 +13,7 @@
 - headless用户sudo权限 ✅
 - 官方微信包语音视频通话卡住异常 (疑似和声音设备有关) ✅
 - vnc复制粘贴中文不兼容  ing （孩子没招了）
-- 微信映射文件持久化存储  ❓✅ (需要首次赋予目录权限后手动修改微信存储目录)
+- 微信映射文件持久化存储  ❓✅ ([容器配置](https://github.com/Shen-Chris/dsq-docker-wechat/blob/main/README.md#2docker-composeyml)：1-[直接映射](https://github.com/Shen-Chris/dsq-docker-wechat/issues/4#issuecomment-3247910819);  2-[间接修改](https://github.com/Shen-Chris/dsq-docker-wechat/blob/main/README.md#1%E5%BE%AE%E4%BF%A1%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8)-需要首次赋予目录权限后手动修改微信存储目录)
 - 待补充
 
 # beta版本
@@ -51,13 +51,11 @@ services:
     user: "1000:1000" # 以 UID 1000 和 GID 1000 的身份运行 即 headless用户
     volumes:
       # 挂载数据卷，实现数据持久化，路径请自定义
-      #- "/path/data:/home/headless/.config/weixin"
-      #- "/path/files:/home/headless/WeChat_files"
-      #- "/path/xwechat:/headless/.xwechat"
-      #- "/path/xwechat_files:/headless/文档/xwechat_files"
-      - "/path/wechat_data:/wechat_data"
-      - "/path/wechat_files:/wechat_files"
-      - "/path/downloads:/headless/下载"
+      #- "/path/xwechat:/headless/.xwechat"  # 直接映射微信存储目录
+      #- "/path/xwechat_files:/headless/文档/xwechat_files" # 直接映射微信存储目录
+      - "/path/wechat_data:/wechat_data" # 间接修改微信存储目录
+      - "/path/wechat_files:/wechat_files" # 间接修改微信存储目录
+      - "/path/downloads:/headless/下载" # 通用
     environment:
       # --- 分辨率 ---
       - "VNC_RESOLUTION=1366x768"
@@ -144,8 +142,11 @@ access_log  /www/wwwlogs/www.ssq.cn.log;
 ```
 
 # 其他问题
-## 1.微信持久化存储
-docker-compose.yml配置里映射的持久化目录为/wechat_data，登录微信后在左下角 **设置-账号与存储-存储位置** 点击更改按钮修改成持久化目录（例如/wechat_data/xwechat_files），若权限不足更改失败，需要首次修改权限（！仅供参考！）后再更改（首次启动容器首次登录微信需要修改存储目录）
+## 1.容器配置-微信持久化存储
+#### 间接修改微信存储目录
+[docker-compose.yml配置](https://github.com/Shen-Chris/dsq-docker-wechat/blob/main/README.md#2docker-composeyml)里映射的持久化目录为/wechat_data，登录微信后在左下角 **设置-账号与存储-存储位置** 点击更改按钮修改成持久化目录（例如/wechat_data/xwechat_files），若权限不足更改失败，需要首次修改权限（！仅供参考！）后再更改（首次启动容器首次登录微信需要修改存储目录）
+#### 直接映射（可能出问题）
+[参考直接映射](https://github.com/Shen-Chris/dsq-docker-wechat/issues/4#issuecomment-3247910819)
 ```shell
 # ！仅供参考以实际为主！
 sudo chown -R headless:headless /wechat_data /wechat_files
