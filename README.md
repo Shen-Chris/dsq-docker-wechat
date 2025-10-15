@@ -145,13 +145,13 @@ access_log  /www/wwwlogs/www.ssq.cn.log;
 ## 1.容器配置-微信持久化存储
 #### 间接修改微信存储目录
 [docker-compose.yml配置](https://github.com/Shen-Chris/dsq-docker-wechat/tree/main?tab=readme-ov-file#2docker-composeyml)里映射的持久化目录为/wechat_data，登录微信后在左下角 **设置-账号与存储-存储位置** 点击更改按钮修改成持久化目录（例如/wechat_data/xwechat_files），若权限不足更改失败，需要首次修改权限（！仅供参考！）后再更改（首次启动容器首次登录微信需要修改存储目录）
-#### 直接映射（可能出问题）
-[参考直接映射](https://github.com/Shen-Chris/dsq-docker-wechat/issues/4#issuecomment-3247910819)
 ```shell
 # ！仅供参考以实际为主！
 sudo chown -R headless:headless /wechat_data /wechat_files
 sudo chmod 755 /wechat_data /wechat_files
 ```
+#### 直接映射（可能出问题）
+[参考直接映射](https://github.com/Shen-Chris/dsq-docker-wechat/issues/4#issuecomment-3247910819)
 
 ## 2.fcitx5输入法 [**已默认配置中文输入法，ctrl space切换输入法**]
 若输入法存在问题（例如部分程序无法使用），则需要修改环境变量后重新启动容器:
