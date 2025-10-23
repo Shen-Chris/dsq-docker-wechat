@@ -9,12 +9,10 @@
 调试不易，希望点点小🌟🌟，谢谢
 
 ## v1.1 新功能 / 修复
-- emoji ✅
-- headless用户sudo权限 ✅
-- 官方微信包语音视频通话卡住异常 (疑似和声音设备有关) ✅
-- vnc复制粘贴中文不兼容  ing （孩子没招了）
-- 微信映射文件持久化存储  ❓✅ ([容器配置](https://github.com/Shen-Chris/dsq-docker-wechat/tree/main?tab=readme-ov-file#2docker-composeyml)：1-[直接映射](https://github.com/Shen-Chris/dsq-docker-wechat/issues/4#issuecomment-3247910819);  2-[间接修改](https://github.com/Shen-Chris/dsq-docker-wechat/tree/main?tab=readme-ov-file#1%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE-%E5%BE%AE%E4%BF%A1%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8)-需要首次赋予目录权限后手动修改微信存储目录)
-- 待补充
+  [详见](https://github.com/Shen-Chris/dsq-docker-wechat/tree/v1.1?tab=readme-ov-file#%E6%96%B0%E5%8A%9F%E8%83%BD--%E4%BF%AE%E5%A4%8D)
+## v1.2 新功能 / 修复
+- vnc复制粘贴中文 - 客户端
+- 声音设备传递
 
 # beta版本
 - 待补充
@@ -26,6 +24,9 @@ linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x b
 
 ## 1、拉取
 ```
+beta版本
+docker pull ghcr.io/shen-chris/dsq-docker-wechat:v1.2
+
 稳定版本
 docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 
