@@ -17,7 +17,7 @@
 - 待补充
 
 # beta版本
-- 待补充
+- [v1.2](https://github.com/Shen-Chris/dsq-docker-wechat/tree/v1.2?tab=readme-ov-file#v12-%E6%96%B0%E5%8A%9F%E8%83%BD--%E4%BF%AE%E5%A4%8D)
 
 # 自构建镜像
 linux环境下，拉取本项目，执行buildImagesLocal.sh 脚本 (`chmod +x buildImagesLocal.sh`)
@@ -33,7 +33,7 @@ docker pull ghcr.io/shen-chris/dsq-docker-wechat:main
 docker pull ghcr.io/shen-chris/dsq-docker-wechat:v1.1
 
 测试版本：
-待补充......
+docker pull ghcr.io/shen-chris/dsq-docker-wechat:v1.2  # 构建中ing
 ```
 
 ## 2、docker-compose.yml
