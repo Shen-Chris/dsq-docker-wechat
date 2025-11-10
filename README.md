@@ -166,6 +166,12 @@ export XMODIFIERS="@im=fcitx"
 再生效```source ~/.bashrc``` 后
 如若未生效则需要重新启动容器后，再启动fcitx5尝试
 
+## 3、wechat版本升级可选方法
+1、流水线[每月1号自动构建更新](https://github.com/Shen-Chris/dsq-docker-wechat/blob/main/.github/workflows/docker-publish.yml)
+2、[自构建镜像](https://github.com/Shen-Chris/dsq-docker-wechat?tab=readme-ov-file#%E8%87%AA%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F) ，每次构建都会下载最新的官方安装包
+3、headless有sudo权限，可以自定义安装
+4、fork我的仓库，利用github流水线构建镜像
+
 
 # 预览效果
 vnc预览效果
