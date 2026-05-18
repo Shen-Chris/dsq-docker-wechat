@@ -1,5 +1,5 @@
-# dsq-docker-wechat
-在docker里运行wechat，可以通过web或者VNC访问wechat  
+# dsq-docker-wechat+
+在docker linux系统里运行wechat，可以通过web或者VNC访问wechat，可扩展安装QQ/Telegram 等linux软件 (`sudo dpkg -i **.deb`),
 使用 [consol/debian-xfce-vnc:latest](https://hub.docker.com/r/consol/debian-xfce-vnc) 和 微信官方linux x86版本https://linux.weixin.qq.com/ 构建而来，自带fcitx5中文输入法，更多详情配置参考官方
 
 - debian-xfce-vnc
