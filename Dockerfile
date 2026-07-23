@@ -24,7 +24,7 @@ RUN \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         # --- 核心工具 ---
-        gosu wget sudo \
+        gosu wget sudo unzip \
         mousepad \
         # --- 基础字体与环境 ---
         fonts-wqy-zenhei fonts-noto-cjk fonts-noto-color-emoji locales \
@@ -36,6 +36,8 @@ RUN \
         fcitx5 fcitx5-chinese-addons fcitx5-material-color fcitx5-frontend-gtk3 fcitx5-frontend-qt5 \
         # ---音频 ---
         pulseaudio pulseaudio-utils \
+        # -- 雾凇拼音 --
+        fcitx5-rime \
     && \
     # 配置中文环境
     sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -95,6 +97,14 @@ RUN chown -R 1000:1000 /home/headless/.config/autostart /headless/.config/fcitx5
 
 # 加入音频相关的组
 RUN usermod -a -G audio,pulse-access headless
+
+# 雾凇拼音部署
+RUN mkdir -p /headless/.local/share/fcitx5/rime && \
+    wget -qO /tmp/rime-ice.zip https://github.com/iDvel/rime-ice/archive/refs/heads/main.zip && \
+    unzip -q /tmp/rime-ice.zip -d /tmp/ && \
+    cp -r /tmp/rime-ice-main/* /headless/.local/share/fcitx5/rime/ && \
+    rm -rf /tmp/rime-ice* && \
+    chown -R 1000:1000 /headless/.local/share/fcitx5
 
 # 集成权限修复脚本
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
