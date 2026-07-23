@@ -17,6 +17,15 @@
 - 待补充
 
 # beta版本
+  雾凇输入法初始化脚本
+```
+# 1. 装工具
+sudo apt-get update && sudo apt-get install -y git unzip fcitx5-rime fcitx5-config-qt
+# 2. 开代理下载可加快  需要在bashrc 配置代理 
+cd ~ && wget -O rime-ice.zip https://github.com/iDvel/rime-ice/archive/refs/heads/main.zip && unzip rime-ice.zip && mv rime-ice-main rime-ice && mkdir -p ~/.local/share/fcitx5/rime && cp -r rime-ice/* ~/.local/share/fcitx5/rime/ && rm -rf rime-ice rime-ice.zip
+# 3. 激活重启 然后在运行脚本理找到 fcitx5配置，第一次可能会有问题再打开一次就行，到最下面找到【中州语】选择到左边最上面优先级即可
+sudo -u headless bash -c 'im-config -n fcitx5; pkill -9 fcitx5 2>/dev/null; fcitx5 -d'
+```
 - [v1.2](https://github.com/Shen-Chris/dsq-docker-wechat/tree/v1.2?tab=readme-ov-file#v12-%E6%96%B0%E5%8A%9F%E8%83%BD--%E4%BF%AE%E5%A4%8D)
 
 # 自构建镜像
